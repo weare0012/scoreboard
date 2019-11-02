@@ -4,7 +4,7 @@ import {Header} from './components/Header';
 import {Player} from "./components/Player";
 import {AddPlayerForm} from "./components/AddPlayerForm";
 
-
+let maxId = 4;
 class App extends React.Component{
   state = {
     players:[
@@ -26,7 +26,7 @@ class App extends React.Component{
                     changeScore={this.handleChangeScore.bind(this)}
                     />)
         }
-        <AddPlayerForm/>
+        <AddPlayerForm addPlayer={this.handleAddPlayer.bind(this)}/>
       </div>
     )
   }
@@ -56,6 +56,15 @@ class App extends React.Component{
         return player;
       })
       return {players};
+    })
+  }
+
+  handleAddPlayer(name){
+    console.log('handleAddPlayer', name);
+    this.setState(prevState => {
+      const players = [...prevState.players];
+      players.push({id: ++maxId, name: name, score: 0});
+      return {players}
     })
   }
 }
