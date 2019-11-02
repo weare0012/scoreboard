@@ -18,7 +18,7 @@ class App extends React.Component{
   render() {
     return (
       <div className="scoreboard">
-        <Header title="My Scoreboard" player={this.state.players}/>
+        <Header title="My Scoreboard" players={this.state.players}/>
         {
           this.state.players.map(item =>
             <Player name={item.name} score={item.score} id={item.id.toString()}
@@ -34,7 +34,7 @@ class App extends React.Component{
   handleRemovePlayer = (id) => {
     console.log('handleRemovePlayer' + id);
     this.setState(prevState => {
-      const players = prevState.players.filter(player => player.id != id);
+      const players = prevState.players.filter(player => player.id !== id);
       return {players: players};
     })
   }
